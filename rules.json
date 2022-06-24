@@ -1,0 +1,60 @@
+﻿{
+    "rules": [
+        {
+            "title": "Be Respectful!",
+            "rule": "No matter what, respect is a must. It does not matter who has been what degree of rude with you, or disrespectful, do not take the situation into your own hands, but instead report it. If you can't communicate in a civil manor, then there will be no communication whatsoever. All parties being rude/indecent will be muted until all attitudes have subsided."
+        },
+        {
+            "title": "No Nudity or Pornography!",
+            "rule": "At NO given time shall any nudity be shown, or portrayed, in the Gawther Platform. This is a community for ages 13 or older. They are still children and thus will not be exposed to such. Anyone caught sharing/displaying any types of nudity will be permanently removed from ALL platforms and sub-platforms. This is not a joke! This includes, but is not limited to -Bathing Suits (of any piece count/style) - Underwear/Under Clothing Garments - See-Through Clothing - Clothing/Items That Enhance Inappropriate Body Parts - Pasties - Jock Straps"
+        },
+        {
+            "title": "Additional Information",
+            "rule": "Anyone caught breaking the No Nudity! and No Pornography! rules will be immediately removed from all parts and sub-parts of the Gawther Platform without the option of appealing the ban. This is a very serious thing and will be taken as such. For more information please see [Federal Law on Obscenity Involving Minors](https://www.justice.gov/criminal-ceos/obscenity#:~:text=Obscenity%20Law%20and%20Minors,is%20punishable%20under%20federal%20law) and [Federal Law On Child Pornography Involving Minors](https://www.justice.gov/criminal-ceos/citizens-guide-us-federal-law-child-pornography)"
+        },
+        {
+            "title": "Channel Topics Exist!",
+            "rule": "As the name states, channel topics exist. When you go to a text channel, look at the top of the channel. There is a description that states the purpose of that channel. The members of the community will typically relay this information to members who ask their questions in the wrong channels. It's not a bad thing, just keeps the channels clean and organized making information easier to find, and keeping subjects and topics where they belong."
+        },
+        {
+            "title": "Respect All Staff Members & Their Decisions!",
+            "rule": "It does not matter if you agree or disagree with a staff member during a currently happening situation, respect their decisions on how to handle the situation. Why do we say this? Because, there is a form that you are able to fill out under the Support tab at the top of the website that allows you to Report A Staff Member. This is in place for you, the member, to report any and all staff members that you feel are abusing their powers, making immature or unfair decisions, or to ask any question about the Staff Members and what their permissions are. Regardless, anyone - staff included - that cannot respect one another within the discord/website channels, please see the very first rule on this page."
+        },
+        {
+            "title": "Do Not Ping Higher-Level Staff Unless Necessary!",
+            "rule": "We are consistently working and striving to improve the community as a whole. We DO NOT get paid to do this job, thus do not rush us. Everyone's opinions and concerns that are reported are each individually viewed and discussed in a private channel within the staff's category. Be Patient!"
+        },
+        {
+            "title": "Need To Speak With Upper Staff?",
+            "rule": "If you need to open a support ticket to speak with upper-level staff, then do understand that the immediate response staff team will ask you questions first regarding the situation to ensure that they cannot help you without needing to ping higher staff. If you cannot go through this questionaire that the staff may ask, then you do not need to speak with upper-level staff. Do not demand to speak with anyone. Do not cuss at staff members. These actions will result in a ban!"
+        },
+        {
+            "title": "Doxxing Not Allowed!",
+            "rule": "Giving away, or selling anyones publicly, or none publicly, identifiable information anywhere in DM's, or in any part or sub-part of any Gawther Platform will be immediately banned with no questions asked! [see here](https://www.makeuseof.com/what-is-doxxing/)"
+        },
+        {
+            "title": "No Private Threads!",
+            "rule": "We are a community comprised of individuals of ALL ages 13 or older. If there is something you need to tell someone privately, then utilize Direct Messages, but do understand that all of these rules apply even when in Direct Messages between Gawther Members."
+        },
+        {
+            "title": "Do Not Create Your Own Invite Link!",
+            "rule": "The bot is setup with a command to invite your friends to the discord. Please do not create your own invite links."
+        },
+        {
+            "title": "At-least 2 Staff Members Required!",
+            "rule": "When pulling a member into a voice channel to discuss a problem, or other details, at least 2 staff members are required to be in the channel at all times. This is not only for the safety of the member, but for your safety as well. It also gives a 3rd side to the story in the event something were to go wrong."
+        },
+        {
+            "title": "NO GASLIGHTING",
+            "rule": "A member may not attempt to psychologically manipulate or attempts to sow self-doubt and confusion towards another member"
+        },
+        {
+            "title": "No Spamming!",
+            "rule": "At no time is a member allowed to spam any text channels! This will result in an automatic 3 day mute!"
+        },
+        {
+            "title": "No Sleeping In Voice Channels",
+            "rule": "It has become apparent that the AFK Time Out Timer doesn not work due to background noise in microphones. There will be no sleeping, or other forms of sleeping, in voice channels regardless to video/no video. The voice channels are meant for active members to have a place to hangout and verbally talk. If you fall asleep in a voice channel, you will be moved to AFK by a staff member. If this occurs too many times consecutively, it will start to result in mutes instead of warnings."
+        }
+    ]
+}
