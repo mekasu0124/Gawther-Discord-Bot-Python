@@ -1,10 +1,10 @@
 import disnake 
-import asyncio
-import json
+import sqlite3 as sql
 
 from disnake.ext import commands
 from disnake.ext.commands import Cog
 from datetime import date
+
 
 """FIRST VIEW IS THE BOT VIEW."""
 class BotView(disnake.ui.View):
@@ -159,7 +159,8 @@ class SupportFunctions(Cog):
     def __init__(self,bot):
         self.bot = bot
     
-    @commands.slash_command(name="support",description="Get Support For Either Discord, Or The Website")
+    #done
+    @commands.slash_command(name="support",description="Get Support For Either Discord, Or The Website",guild_ids=[779290532622893057])
     @commands.has_any_role(
         "Owner", "Gawther", "Head Administrator", "Head Developer",
         "Head Designer", "Head Support", "Administrator", "Moderator",
@@ -170,8 +171,8 @@ class SupportFunctions(Cog):
         view = BotView(self.bot)
         await inter.response.send_message("Please Select A Category Below", view=view, ephemeral=True)
 
-
-    @commands.slash_command(name="close",description="close your support channel")
+    # done
+    @commands.slash_command(name="close",description="close your support channel",guild_ids=[779290532622893057])
     async def move_dormant(self,inter):
         await inter.response.send_message("Channel Is Closing! Please Do Not Type Into Channel!")
         all_messages = await inter.channel.history(limit=None).flatten()
@@ -246,8 +247,8 @@ class SupportFunctions(Cog):
         else:
             await inter.edit_original_message("You Are Not Staff or The Member Needing Support. You Cannot Close This Channel!")
 
-
-    @commands.slash_command(name="clock",description="Clock In or Out For Helping With Support")
+    # done
+    @commands.slash_command(name="clock",description="Clock In or Out For Helping With Support",guild_ids=[779290532622893057])
     @commands.has_any_role(
         "Owner", "Head Administrator", "Head Support", "Head Designer", "Head Developer",
         "Administrator", "Moderator", "Support Staff", "Community Helper"
@@ -270,7 +271,118 @@ class SupportFunctions(Cog):
             await inter.author.remove_roles(rem_role)
             await inter.author.add_roles(add_role)
             return await inter.edit_original_message("You Have Been Clocked Out! Have A Great Day!")
-                
+    
+    @commands.slash_command(name="full_profile",description="Pull Up All Information On The Specified Member.",guild_ids=[779290532622893057])
+    @commands.has_any_role("clocked_in")
+    async def full_user_profile(self,inter,member:disnake.Member):
+        await inter.response.send_message("Please Wait While I Retrieve The Members Information. . .")
+
+        if inter.channel.name != "appeal_discussion":
+            ping_channel = disnake.utils.get(inter.guild.text_channels,name="appeal_discussion")
+            await inter.edit_original_message(f"Wrong Channel. Please See {ping_channel.mention}")
+        else:
+            with sql.connect('main.db') as mdb:
+                cur = mdb.cursor()
+
+                srch = 'SELECT * FROM members WHERE id=?'
+                val = (member.id,)
+
+                srch2 = 'SELECT * FROM mute_logs WHERE id=?'
+                val2 = (member.id,)
+
+                srch3 = 'SELECT * FROM kick_logs WHERE id=?'
+                val3 = (member.id,)
+
+                srch4 = 'SELECT * FROM ban_logs WHERE id=?'
+                val4 = (member.id,)
+
+                all_member_info = cur.execute(srch,val).fetchall()
+                all_mute_info = cur.execute(srch2,val2).fetchall()
+                all_kick_info = cur.execute(srch3,val3).fetchall()
+                all_ban_info = cur.execute(srch4,val4).fetchall()
+
+                titles = [
+                    "ID", "Balance", "Experience",
+                    "Level", "Fav Color", "Fav Animal",
+                    "Fav Food", "Fav Education Subject",
+                    "Fav Music Artist", "Fav Art Artist",
+                    "Fav Season", "Fav Holiday", "Warnings",
+                    "Mutes", "Bans", "Kicks", "Age", "DOB"
+                ]
+
+                second_titles = [
+                    "Member ID", "Log ID", "Staff Member",
+                    "Start Time", "End Time", "Reason"
+                ]
+
+                embed = disnake.Embed(
+                    color = disnake.Colour.random(),
+                    timestamp = inter.created_at,
+                    title = "Full Member Information",
+                    description = "Below Is All Available Information"
+                ).set_thumbnail(url = member.avatar)
+
+                count = 0
+
+                for i in all_member_info[0]:
+                    embed.add_field(
+                        name = titles[count],
+                        value = i,
+                        inline = False
+                    )
+                    count += 1
+
+                if all_mute_info:
+                    for j in all_mute_info:
+                        embed.add_field(
+                            name = second_titles[count],
+                            value = j,
+                            inline = False
+                        )
+
+                        count += 1
+                else:
+                    embed.add_field(
+                        name = "Mute Logs",
+                        value = "Empty",
+                        inline = False
+                    )
+
+                if all_kick_info:
+                    for k in all_kick_info:
+                        embed.add_field(
+                            name = second_titles[count],
+                            value = k,
+                            inline = False
+                        )
+
+                        count += 1
+                else:
+                    embed.add_field(
+                        name = "Kick Logs",
+                        value = "None",
+                        inline = False
+                    )
+
+                if all_ban_info:
+                    for l in all_ban_info:
+                        embed.add_field(
+                            name = second_titles[count],
+                            value = l,
+                            inline = False
+                        )
+
+                        count += 1
+                else:
+                    embed.add_field(
+                        name = "Ban Logs",
+                        value = "Empty",
+                        inline = False
+                    )
+
+            await inter.edit_original_message(embed=embed)
+
+
 
 def setup(bot):
     bot.add_cog(SupportFunctions(bot))

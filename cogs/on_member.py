@@ -14,7 +14,7 @@ class OnMemberJoin(Cog):
     # when member first joins
     @commands.Cog.listener()
     async def on_member_join(self,member):
-        guild = self.bot.get_guild(779290532622893057)
+        guild = member.guild
 
         rules_chan = disnake.utils.get(guild.text_channels,name="rules")
         intros_chan = disnake.utils.get(guild.text_channels,name="intros")
@@ -70,8 +70,8 @@ class OnMemberJoin(Cog):
             with sql.connect('main.db') as mdb:
                 cur = mdb.cursor()
 
-                srch = 'INSERT INTO members(id,exp,level,color,animal,food,edu_subj,artist_music,artist_art,season,holiday,warnings,mutes,bans,kicks,age,dob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
-                val = (member.id,0,0,None,None,None,None,None,None,None,None,0,0,0,0,0,None)
+                srch = 'INSERT INTO members(id,bal,exp,level,color,animal,food,edu_subj,artist_music,artist_art,season,holiday,warnings,mutes,bans,kicks,age,dob) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
+                val = (member.id,0,0,0,None,None,None,None,None,None,None,None,0,0,0,0,0,None)
 
                 cur.execute(srch, val)
 
@@ -83,6 +83,10 @@ class OnMemberJoin(Cog):
                 timestamp = member.joined_at,
                 title = "You're Officially A Member!",
                 description = f"You've successfully been registered as a member to Gather! :) {member.mention} Please Have Fun! Relax! and Enjoy Yourself! and remember to follow the rules :P"
+            ).add_field(
+                name="One More Thing!",
+                value = "You were written to my database with a blank profile. If you would like to create a profile, please run the /create_profile command and I will send you a DM!",
+                inline = False
             ).set_thumbnail(
                 url = self.bot.user.avatar
             )

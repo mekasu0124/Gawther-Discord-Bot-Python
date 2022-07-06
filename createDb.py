@@ -7,6 +7,7 @@ def create_db():
 
         cur.execute('''CREATE TABLE IF NOT EXISTS members(
             id INTEGER,
+            bal INTEGER,
             exp INTEGER,
             level INTEGER,
             color TEXT,
@@ -25,9 +26,9 @@ def create_db():
             dob TEXT
         )''')
 
-        cur.execute('''CREATE TABLE IF NOT EXISTS ban_logs(
+        cur.execute('''CREATE TABLE IF NOT EXISTS kick_logs(
             id INTEGER,
-            ban_id INTEGER,
+            kick_id INTEGER,
             staff TEXT,
             start_time TEXT,
             end_time TEXT,
@@ -43,9 +44,9 @@ def create_db():
             reason TEXT
         )''')
 
-        cur.execute('''CREATE TABLE IF NOT EXISTS kick_logs(
+        cur.execute('''CREATE TABLE IF NOT EXISTS ban_logs(
             id INTEGER,
-            kick_id INTEGER,
+            ban_id INTEGER,
             staff TEXT,
             start_time TEXT,
             end_time TEXT,

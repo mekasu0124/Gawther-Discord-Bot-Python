@@ -11,9 +11,10 @@ class RulesFunctions(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(name="createrule",description="Create A New Rule")
+    # done
+    @commands.slash_command(name="createrule",description="Create A New Rule",guild_ids=[779290532622893057])
     @commands.has_any_role("Owner", "Head Administrator", "Head Developer")
-    async def create_rule(self,inter,rule_name:str,*,rule_info:str):
+    async def create_rule(self,inter,rule_name:str,rule_info:str,*,reason:str):
         with open('./rules.json','r',encoding='utf-8-sig') as f:
             data = json.load(f)
 
@@ -27,10 +28,15 @@ class RulesFunctions(Cog):
             
             await inter.response.send_message("Successfully Added New Rule To Database", ephemeral=True)
 
+        log_channel = disnake.utils.get(inter.guild.text_channels, name="bot_logs")
 
-    @commands.slash_command(name="editrule",description="Edit A Rule")
+        await log_channel.send(f"{inter.author.name} Has Added A New Rule For The Reason Of {reason}.")
+
+
+    # done
+    @commands.slash_command(name="edit_rule",description="Edit A Rule",guild_ids=[779290532622893057])
     @commands.has_any_role("Owner", "Head Administrator", "Head Developer")
-    async def edit_rule(self,inter,rule_num:int,type:str,*,x:str):
+    async def edit_rule(self,inter,rule_num:int,type:str,new_info:str,*,reason:str):
         with open('./rules.json','r',encoding='utf-8-sig') as f:
             data = json.load(f)
 
@@ -52,8 +58,13 @@ class RulesFunctions(Cog):
 
         await inter.response.send_message("Successfully Edited Rule", ephemeral=True)
 
+        log_channel = disnake.utils.get(inter.guild.text_channels, name="bot_logs")
+
+        await log_channel.send(f"{inter.author.name} Has Edited Rule #{rule_num} For The Reason Of {reason}.")
+
     
-    @commands.slash_command(name="deleterule",description="Delete A Rule")
+    # done
+    @commands.slash_command(name="delete_rule",description="Delete A Rule",guild_ids=[779290532622893057])
     @commands.has_any_role("Owner", "Head Administrator", "Head Developer")
     async def del_rule(self,inter,rule_num:int,*,reason:str):
         with open('./rules.json','r',encoding='utf-8-sig') as f:
@@ -66,12 +77,17 @@ class RulesFunctions(Cog):
 
         await inter.response.send_message("Successfully Deleted Rule", ephemeral=True)
 
+        log_channel = disnake.utils.get(inter.guild.text_channels, name="bot_logs")
 
-    @commands.slash_command(name="listrules",description="List All Rules")
+        await log_channel.send(f"{inter.author.name} Has Deleted Rule #{rule_num} For The Reason Of {reason}.")
+
+
+    # done
+    @commands.slash_command(name="listrules",description="List All Rules",guild_ids=[779290532622893057])
     @commands.has_any_role(
         "Owner", "Head Administrator", "Head Developer",
         "Head Designer", "Head Support", "Administrator", "Moderator",
-        "Support Staff", "Community Helper", "DND_DM", "DND PL", "Developers",
+        "Support Staff", "Community Helper", "DND DM", "DND PL", "Developers",
         "Designers", "Nitro Member", "Programming", "Gaming", "Member"
     )
     async def list_rule(self,inter):
@@ -92,7 +108,7 @@ class RulesFunctions(Cog):
         count = 1
         emb_name = "embed"+ str(count)
 
-        all_embs = [embed]
+        all_embs = []
 
         for index in data["rules"]:
             rule_title = index["title"]
@@ -111,7 +127,7 @@ class RulesFunctions(Cog):
         timeout = 0
         author_id = inter.author.id
 
-        await inter.response.send_message(embed=all_embs[0],view=CreatePaginator(all_embs, author_id, timeout),ephemeral=True)
+        await inter.response.send_message(embed=embed,view=CreatePaginator(all_embs, author_id, timeout),ephemeral=True)
 
 
 def setup(bot):
