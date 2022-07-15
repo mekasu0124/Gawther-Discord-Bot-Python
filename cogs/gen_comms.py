@@ -309,7 +309,7 @@ class GeneralCommands(Cog):
 
     
     # done
-    @commands.slash_command(name="request",description="Allows the user to request payment from another member.",guild_ids=[779290532622893057])
+    @commands.slash_command(name="request",description="Allows the user to request payment from another member.")
     @commands.has_any_role(
         "Owner", "Gawther", "Head Administrator", "Head Developer",
         "Head Designer", "Head Support", "Administrator", "Moderator",
@@ -418,7 +418,7 @@ class GeneralCommands(Cog):
     
     # done
     # keep updated
-    @commands.slash_command(name="role_select",description="Assign Yourself A Role",guild_ids=[779290532622893057])
+    @commands.slash_command(name="role_select",description="Assign Yourself A Role")
     @commands.has_any_role(
         "Owner", "Gawther", "Head Administrator", "Head Developer",
         "Head Designer", "Head Support", "Administrator", "Moderator",
